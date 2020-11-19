@@ -1,1 +1,75 @@
+package com.easytravel;
 
+import java.util.Scanner;
+
+public class Passageiro {
+    private String nome;
+    private String telefone;
+    private String cpf;
+
+    public Passageiro(String nome, String telefone, String cpf){
+        this.nome = nome;
+        this.telefone = telefone;
+        this.cpf = cpf;
+    }
+
+    public Passageiro(){
+
+    }
+
+    public String getNome(){
+        return this.nome;
+    }
+
+    public String getTelefone(){
+        return this.telefone;
+    }
+
+    public String getCPF(){
+        return this.cpf;
+    }
+
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+
+    public void setTelefone(String telefone){
+        this.telefone = telefone;
+    }
+
+    public void setCPF(String cpf){
+        this.cpf = cpf;
+    }
+
+    public void cadastroPassageiro(){
+        Scanner leitura = new Scanner(System.in);
+        System.out.println("Digite seu nome: ");
+        String nome = leitura.next();
+        setNome(nome);
+        System.out.println("Telefone: ");
+        String telefone = leitura.next();
+        setTelefone(telefone);
+        System.out.println("CPF: ");
+        String cpf = leitura.next();
+        setCPF(cpf);
+        leitura.close();
+    }
+
+    public void imprimeDadosPassageiro(){
+        System.out.println("Nome: " + this.getNome());
+        System.out.println("Telefone: " + this.getTelefone());
+        System.out.println("CPF: " + this.getCPF());
+    }
+
+  /*public void compraPassagem(){
+
+  }
+
+  public void geradorNumeroVoucher(){
+
+  }
+
+  public float calculaPreco(){
+
+  }*/
+}
