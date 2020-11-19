@@ -1,1 +1,164 @@
+package com.easytravel;
 
+import java.util.Calendar;
+import java.util.ArrayList;
+
+import static java.util.Calendar.*;
+
+public class VooAviao{
+    private String codigoIdentificacao;
+    private String localOrigem;
+    private String localChegada;
+    private Calendar dataPartida = getInstance();
+    private Calendar dataChegada = getInstance();
+    private ArrayList<Integer> assentosPrimeiraClasse = new ArrayList<>(30);
+    private ArrayList<Integer> assentosSegundaClasse = new ArrayList<>(70);
+    private ArrayList<Passageiro> listaPassageiro = new ArrayList<>(100);
+    private float precoHora;
+    private float taxaAssentoPrimeiraClasse;
+    private float taxaAssentoSegundaClasse;
+
+    //construtores
+    public VooAviao(String codigoIdentificacao, String localOrigem, String localChegada, float precoHora, float taxaAssentoPrimeiraClasse, float taxaAssentoSegundaClasse){
+        this.codigoIdentificacao = codigoIdentificacao;
+        this.localOrigem = localOrigem;
+        this.localChegada = localChegada;
+        this.precoHora = precoHora;
+        this.taxaAssentoPrimeiraClasse = taxaAssentoPrimeiraClasse;
+        this.taxaAssentoSegundaClasse = taxaAssentoSegundaClasse;
+    }
+
+    //getters
+    public String getCodigoIdentificacao(){
+        return this.codigoIdentificacao;
+    }
+
+    public String getLocalOrigem(){
+        return this.localOrigem;
+    }
+
+    public String getLocalChegada(){
+        return this.localChegada;
+    }
+
+    public float getPrecoHora(){
+        return this.precoHora;
+    }
+
+    public void getDataPartida(){
+        System.out.println(dataPartida.getTime());
+    }
+
+    public void getDataChegada(){
+        System.out.println(dataChegada.getTime());
+    }
+
+    public float getTaxaAssentoPrimeiraClasse(){
+        return this.taxaAssentoPrimeiraClasse;
+    }
+
+    public float getTaxaAssentoSegundaClasse(){
+        return this.taxaAssentoSegundaClasse;
+    }
+
+    public ArrayList<Integer> getAssentosPrimeiraClasse() {
+        return assentosPrimeiraClasse;
+    }
+
+    public ArrayList<Integer> getAssentosSegundaClasse() {
+        return assentosSegundaClasse;
+    }
+
+    public ArrayList<Passageiro> getListaPassageiro(){
+        return listaPassageiro;
+    }
+
+    //setters
+    public void setCodigoIdentificacao(String codigoIdentificacao){
+        this.codigoIdentificacao = codigoIdentificacao;
+    }
+
+    public void setLocalOrigem(String localOrigem){
+        this.localOrigem = localOrigem;
+    }
+
+    public void setLocalChegada(String localChegada){
+        this.localChegada = localChegada;
+    }
+
+    public void setPrecoHora(float precoHora){
+        this.precoHora = precoHora;
+    }
+
+    public void setTaxaAssentoPrimeiraClasse(float taxaAssentoPrimeiraClasse){
+        this.taxaAssentoPrimeiraClasse = taxaAssentoPrimeiraClasse;
+    }
+
+    public void setTaxaAssentoSegundaClasse(float taxaAssentoSegundaClasse){
+        this.taxaAssentoSegundaClasse = taxaAssentoSegundaClasse;
+    }
+
+    //passa os dados para o calendário dataPartida, já que os objetos calendar são criados com o horário do computador
+    //note que os meses de calendar vão de 0 a 11 e não de 1 a 12
+    public void setDataPartida(int anoPartida, int mesPartida, int diaPartida, int horaPartida, int minutoPartida){
+        dataPartida.set(Calendar.YEAR, anoPartida);
+        dataPartida.set(Calendar.MONTH, mesPartida);
+        dataPartida.set(Calendar.DAY_OF_MONTH, diaPartida);
+        dataPartida.set(Calendar.HOUR_OF_DAY, horaPartida);
+        dataPartida.set(Calendar.MINUTE, minutoPartida);
+    }
+
+    //passa os dados para o calendário dataChegada
+    public void setDataChegada(int anoChegada, int mesChegada, int diaChegada, int horaChegada, int minutoChegada){
+        dataChegada.set(Calendar.YEAR, anoChegada);
+        dataChegada.set(Calendar.MONTH, mesChegada);
+        dataChegada.set(Calendar.DAY_OF_MONTH, diaChegada);
+        dataChegada.set(Calendar.HOUR_OF_DAY, horaChegada);
+        dataChegada.set(Calendar.MINUTE, minutoChegada);
+    }
+
+    public void setAssentosPrimeiraClasse(ArrayList<Integer> assentosPrimeiraClasse) {
+        this.assentosPrimeiraClasse = assentosPrimeiraClasse;
+    }
+
+    public void setAssentosSegundaClasse(ArrayList<Integer> assentosSegundaClasse) {
+        this.assentosSegundaClasse = assentosSegundaClasse;
+    }
+
+    public void setListaPassageiro(ArrayList<Passageiro> listaPassageiro){
+        this.listaPassageiro = listaPassageiro;
+    }
+
+    //métodos
+    //imprime as informações do vôo cadastrado
+    public void imprimeDadosVoo(){
+        System.out.println("Código de identificação: " + this.getCodigoIdentificacao());
+        System.out.println("Origem: " + this.getLocalOrigem());
+        System.out.println("Chegada: " + this.getLocalChegada());
+        System.out.println("Preço da hora: " + this.getPrecoHora());
+        System.out.println("Quantidade de assentos da primeira classe: " + this.getAssentosPrimeiraClasse().size());
+        System.out.println("Quantidade de assentos da segunda classe: " + this.getAssentosSegundaClasse().size());
+        System.out.println("Total de assentos: " + this.getQuantidadeAssentosTotal());
+        System.out.println("Taxa de assento da primeira classe: " + this.getTaxaAssentoPrimeiraClasse());
+        System.out.println("Taxa de assento da segunda classe: " + this.getTaxaAssentoSegundaClasse());
+        System.out.println("Data de partida: ");
+        this.getDataPartida();
+        System.out.println("Data de chegada: ");
+        this.getDataChegada();
+    }
+
+    //retorna a quantidade de assentos ocupados das duas classes
+    public int getQuantidadeAssentosTotal(){
+        int i = this.getAssentosPrimeiraClasse().size() + this.getAssentosSegundaClasse().size();
+        return i;
+    }
+
+    //laço for que imprime os dados de todos os passageiros independente de ser primeira ou segunda classe
+    public void imprimeListaPassageiros(){
+        System.out.println(("*** Lista de Passageiros do Vôo " + this.getCodigoIdentificacao() + " ***"));
+        for (int i = 0; i < listaPassageiro.size(); i++) {
+            System.out.println("Dados do passageiro " + (i + 1));
+            listaPassageiro.get(i).imprimeDadosPassageiro();
+        }
+    }
+}
