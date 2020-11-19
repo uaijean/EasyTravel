@@ -1,1 +1,9 @@
+package com.easytravel;
 
+//colocar abstrata
+
+public interface Passagem{
+    void compraPassagem();
+    float calculaPreco();
+    void geradorNumeroVoucher();
+}
