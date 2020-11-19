@@ -1,0 +1,35 @@
+package com.easytravel;
+
+class Main {
+    public static void main(String[] args) {
+        VooAviao exemplo = new VooAviao("BR101", "Goiânia / GYN", "São Paulo / GRU", 50, 100, 250);
+        exemplo.setDataPartida(2020,5,10,10,30);
+        exemplo.getDataPartida();
+        exemplo.setDataChegada(2020,5,11,5,10);
+        exemplo.getDataChegada();
+        exemplo.getAssentosPrimeiraClasse().add(1);
+        exemplo.getAssentosPrimeiraClasse().add(1);
+        exemplo.getAssentosPrimeiraClasse().add(2);
+        exemplo.getAssentosPrimeiraClasse().add(3);
+        exemplo.getAssentosPrimeiraClasse().add(4);
+        exemplo.getAssentosSegundaClasse().add(1);
+        exemplo.getAssentosSegundaClasse().add(1);
+        exemplo.getAssentosSegundaClasse().add(2);
+        exemplo.imprimeDadosVoo();
+        Passageiro passageiro = new Passageiro();
+        passageiro.cadastroPassageiro();
+        passageiro.imprimeDadosPassageiro();
+        exemplo.getListaPassageiro().add(passageiro);
+        Cartao cartaoCredito = new CartaoCredito("1234567891234567",100, 1);
+        //cartaoCredito.cadastroCartao();
+        cartaoCredito.imprimeDadosCartao();
+        Cartao cartaoDebito = new CartaoDebito("1234567891234567", 100);
+        cartaoDebito.imprimeDadosCartao();
+        //Passageiro passageiroCrianca = new PassageiroCrianca();
+        Passageiro passageiroCrianca = new PassageiroCrianca("A", "00-00", "000.000.00-00", "Mãe de A", "Pai de A", 5);
+        //passageiroCrianca.cadastroPassageiro();
+        passageiroCrianca.imprimeDadosPassageiro();
+        exemplo.getListaPassageiro().add(passageiroCrianca);
+        exemplo.imprimeListaPassageiros();
+    }
+}
