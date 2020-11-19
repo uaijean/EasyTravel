@@ -3,8 +3,6 @@ package com.easytravel;
 import java.util.Calendar;
 import java.util.ArrayList;
 
-import static java.util.Calendar.*;
-
 public class VooAviao{
     private String codigoIdentificacao;
     private String localOrigem;
@@ -18,7 +16,7 @@ public class VooAviao{
     private float taxaAssentoPrimeiraClasse;
     private float taxaAssentoSegundaClasse;
 
-    //construtores
+    //construtor
     public VooAviao(String codigoIdentificacao, String localOrigem, String localChegada, float precoHora, float taxaAssentoPrimeiraClasse, float taxaAssentoSegundaClasse){
         this.codigoIdentificacao = codigoIdentificacao;
         this.localOrigem = localOrigem;
