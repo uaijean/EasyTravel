@@ -1,1 +1,66 @@
+package com.easytravel;
 
+import java.util.Scanner;
+
+public class CartaoCredito extends Cartao {
+    private float limite;
+    private int numeroParcelas;
+
+    //construtor
+    public CartaoCredito(){
+
+    }
+
+    public CartaoCredito(String numeroCartao, float limite, int numeroParcelas) {
+        super(numeroCartao);
+        this.limite = limite;
+        this.numeroParcelas = numeroParcelas;
+    }
+
+    //getters e setters
+    public float getLimite() {
+        return limite;
+    }
+
+    public void setLimite(float limite) {
+        this.limite = limite;
+    }
+
+    public int getNumeroParcelas() {
+        return numeroParcelas;
+    }
+
+    public void setNumeroParcelas(int numeroParcelas) {
+        this.numeroParcelas = numeroParcelas;
+    }
+
+    //métodos
+    @Override
+    public void cadastroCartao() {
+        Scanner leitura = new Scanner(System.in);
+        System.out.println("Insira o número do cartão: ");
+        String numeroCartao = leitura.next();
+        setNumeroCartao(numeroCartao);
+        System.out.println("Insira o limite: ");
+        float limite = leitura.nextFloat();
+        setLimite(limite);
+        //System.out.println("Insira o número das parcelas: ");
+        leitura.close();
+    }
+
+    @Override
+    public void imprimeDadosCartao() {
+        System.out.println("*** Dados do Cartão de Crédito ***");
+        System.out.println("Últimos 4 números: " + this.getNumeroCartao().substring(12));
+        System.out.println("Limite: R$ " + this.getLimite());
+    }
+
+    @Override
+    public void pagamentoCartao() {
+
+    }
+
+    /*public float calculaParcela(){
+        return 0;
+    }*/
+}
