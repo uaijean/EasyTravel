@@ -101,7 +101,7 @@ public class VooAviao{
     //note que os meses de calendar vão de 0 a 11 e não de 1 a 12
     public void setDataPartida(int anoPartida, int mesPartida, int diaPartida, int horaPartida, int minutoPartida){
         dataPartida.set(Calendar.YEAR, anoPartida);
-        dataPartida.set(Calendar.MONTH, mesPartida);
+        dataPartida.set(Calendar.MONTH, mesPartida - 1);
         dataPartida.set(Calendar.DAY_OF_MONTH, diaPartida);
         dataPartida.set(Calendar.HOUR_OF_DAY, horaPartida);
         dataPartida.set(Calendar.MINUTE, minutoPartida);
@@ -110,7 +110,7 @@ public class VooAviao{
     //passa os dados para o calendário dataChegada
     public void setDataChegada(int anoChegada, int mesChegada, int diaChegada, int horaChegada, int minutoChegada){
         dataChegada.set(Calendar.YEAR, anoChegada);
-        dataChegada.set(Calendar.MONTH, mesChegada);
+        dataChegada.set(Calendar.MONTH, mesChegada - 1);
         dataChegada.set(Calendar.DAY_OF_MONTH, diaChegada);
         dataChegada.set(Calendar.HOUR_OF_DAY, horaChegada);
         dataChegada.set(Calendar.MINUTE, minutoChegada);
