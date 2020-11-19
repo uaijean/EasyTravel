@@ -2,6 +2,7 @@ package com.easytravel;
 
 import java.util.Calendar;
 import java.util.ArrayList;
+import static java.util.Calendar.*;
 
 public class VooAviao{
     private String codigoIdentificacao;
