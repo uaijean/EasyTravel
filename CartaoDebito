@@ -8,7 +8,6 @@ public class CartaoDebito extends Cartao {
     public CartaoDebito() {
 
     }
-
     public CartaoDebito(String numeroCartao, float saldo) {
         super(numeroCartao);
         this.saldo = saldo;
@@ -28,8 +27,7 @@ public class CartaoDebito extends Cartao {
         System.out.println("Insira o número do cartão: ");
         super.setNumeroCartao(leitura.next());
         System.out.println("Insira o saldo: ");
-        float saldo = leitura.nextFloat();
-        setSaldo(saldo);
+        this.saldo = leitura.nextFloat();
         leitura.close();
     }
 
