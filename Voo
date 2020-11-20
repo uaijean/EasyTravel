@@ -160,4 +160,11 @@ public class VooAviao{
             listaPassageiro.get(i).imprimeDadosPassageiro();
         }
     }
+    
+    //subtração de calendários
+    public double calculaHorasVoo(){
+        long segundos = (dataChegada.getTimeInMillis() - dataPartida.getTimeInMillis()) / 1000;
+        double horas = segundos / 3600.0;
+        return horas;
+    }
 }
