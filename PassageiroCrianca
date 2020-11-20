@@ -2,95 +2,95 @@ package com.easytravel;
 
 import java.util.Scanner;
 
-public class PassageiroCrianca extends Passageiro implements Passagem {
+public class PassageiroCrianca extends Passageiro{
     private String nomeMae;
     private String nomePai;
-    private int idade;
+    private String telefoneResponsavel;
+    Scanner leitura = new Scanner(System.in);
 
-    //construtores
-    public PassageiroCrianca(String nome, String telefone, String cpf, String nomeMae, String nomePai, int idade){
-        super(nome, telefone, cpf);
+    public PassageiroCrianca( String nome, String nomeMae, String nomePai, String telefoneResponsavel, String telefone, String cpf, int idade) {
+        super(nome, telefone, cpf, idade);
         this.nomeMae = nomeMae;
         this.nomePai = nomePai;
-        this.idade = idade;
+        this.telefoneResponsavel = telefoneResponsavel;
+    }
+    
+
+    // construtores
+    /*public PassageiroCrianca (String nome, String telefone, String cpf, int idade, String nomeMae, String nomePai, String telefoneResponsavel) {
+        super(nome, telefone, cpf, idade);
+        this.nomeMae = nomeMae;
+        this.nomePai = nomePai;
+        this.telefoneResponsavel = telefoneResponsavel;
+    }*/
+
+    public PassageiroCrianca () {
     }
 
-    public PassageiroCrianca(){
-
-    }
-
-    //getters e setters
-    public String getNomeMae() {
+    // getters e setters
+    public String getNomeMae () {
         return nomeMae;
     }
 
-    public void setNomeMae(String nomeMae) {
+    public void setNomeMae (String nomeMae) {
         this.nomeMae = nomeMae;
     }
 
-    public String getNomePai() {
+    public String getNomePai () {
         return nomePai;
     }
 
-    public void setNomePai(String nomePai) {
+    public void setNomePai (String nomePai) {
         this.nomePai = nomePai;
     }
 
-    public int getIdade() {
-        return idade;
+
+    public String getTelefoneResponsavel() {
+        return telefoneResponsavel;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setTelefoneResponsavel(String telefoneResponsavel) {
+        this.telefoneResponsavel = telefoneResponsavel;
     }
+
 
     //métodos
     @Override
     public void cadastroPassageiro(){
         Scanner leitura = new Scanner(System.in);
         System.out.println("Digite o nome da criança: ");
-        String nomeCrianca = leitura.next();
-        setNome(nomeCrianca);
-        System.out.println("Digite o nome da mãe: ");
-        String nomeMae = leitura.next();
-        setNomeMae(nomeMae);
-        System.out.println("Digite o nome do pai: ");
-        String nomePai = leitura.next();
-        setNomePai(nomePai);
-        System.out.println("Digite a idade: ");
-        int idade = leitura.nextInt();
-        setIdade(idade);
+        this.setNome(leitura.nextLine());
+        System.out.println("Digite o nome da mãe:");
+        this.nomeMae = leitura.nextLine();
+        System.out.println("Digite o nome do pai:");
+        this.nomePai = leitura.nextLine();
+        System.out.println("Digite a idade da criança:");
+        super.setIdade(leitura.nextInt());
         System.out.println("Telefone do responsável: ");
-        String telefoneResponsavel = leitura.next();
-        super.setTelefone(telefoneResponsavel);
-        System.out.println("CPF: ");
-        String cpfCrianca = leitura.next();
-        super.setCPF(cpfCrianca);
+        this.telefoneResponsavel = leitura.nextLine();
+        System.out.println("CPF:");
+        super.setCpf(leitura.next());
         leitura.close();
     }
 
     @Override
     public void imprimeDadosPassageiro(){
-        System.out.println("Nome: " + this.getNome());
-        System.out.println("Nome da mãe: " + this.getNomeMae());
-        System.out.println("Nome do pai: " + this.getNomePai());
-        System.out.println("Idade: " + this.getIdade());
-        System.out.println("Telefone do responsável: " + this.getTelefone());
-        System.out.println("CPF: " + this.getCPF());
+        System.out.println ("Nome:" + this.getNome());
+        System.out.println ("Nome da mãe:" + this.getNomeMae());
+        System.out.println ("Nome do pai:" + this.getNomePai());
+        System.out.println ("Idade:" + this.getIdade());
+        System.out.println ("Telefone do responsável:" + this.getTelefone ());
+        System.out.println ("CPF:" + this.getCpf());
     }
 
-    @Override
-    public void compraPassagem() {
-
+    public void compraPassagem () {
     }
 
-    @Override
-    public float calculaPreco() {
+    public float calculaPreco () {
         return 0;
     }
 
-    @Override
-    public void geradorNumeroVoucher() {
+    public void geradorNumeroVoucher () {
 
     }
 }
