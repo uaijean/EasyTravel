@@ -41,8 +41,7 @@ public class CartaoCredito extends Cartao {
         System.out.println("Insira o número do cartão: ");
         super.setNumeroCartao(leitura.next());
         System.out.println("Insira o limite: ");
-        float limite = leitura.nextFloat();
-        setLimite(limite);
+        this.limite = leitura.nextFloat();
         //System.out.println("Insira o número das parcelas: ");
         leitura.close();
     }
