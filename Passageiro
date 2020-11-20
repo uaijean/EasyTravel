@@ -6,79 +6,62 @@ public class Passageiro{
     private String nome;
     private String telefone;
     private String cpf;
-    private int idade;
-    
 
-    public Passageiro (String nome, String telefone, String cpf, int idade) {
+    //construtores
+    public Passageiro(String nome, String telefone, String cpf){
+        super();
         this.nome = nome;
         this.telefone = telefone;
         this.cpf = cpf;
-        this.idade = idade;
     }
 
     public Passageiro(){
+
     }
 
-    public String getNome() {
-        return nome;
+    //getters e setters
+    public String getNome(){
+        return this.nome;
     }
 
-    public void setNome(String nome) {
+    public String getTelefone(){
+        return this.telefone;
+    }
+
+    public String getCPF(){
+        return this.cpf;
+    }
+
+    public void setNome(String nome){
         this.nome = nome;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
+    public void setTelefone(String telefone){
         this.telefone = telefone;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
+    public void setCPF(String cpf){
         this.cpf = cpf;
     }
 
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    public void cadastroPassageiro (){
+    //métodos
+    public void cadastroPassageiro(){
         Scanner leitura = new Scanner(System.in);
-        System.out.println ("Digite seu nome: ");
-        this.nome = leitura.nextLine();
-        System.out.println ("Telefone: ");
-        this.telefone = leitura.nextLine();
-        System.out.println("CPF:");
-        this.cpf = leitura.next();
-        System.out.println("Digite sua idade: ");
-        this.idade = leitura.nextInt();
+        System.out.println("Digite seu nome: ");
+        String nome = leitura.next();
+        setNome(nome);
+        System.out.println("Telefone: ");
+        String telefone = leitura.next();
+        setTelefone(telefone);
+        System.out.println("CPF: ");
+        String cpf = leitura.next();
+        setCPF(cpf);
+        leitura.close();
     }
 
     public void imprimeDadosPassageiro(){
-        System.out.println("Nome:" + this.getNome());
-        System.out.println("Telefone:" + this.getTelefone());
-        System.out.println("CPF:" + this.getCpf());
-        System.out.println("Idade:"+this.getIdade());
+        System.out.println("Nome: " + this.getNome());
+        System.out.println("Telefone: " + this.getTelefone());
+        System.out.println("CPF: " + this.getCPF());
     }
-
-  /* public void compraPassagem () {
-
-  }
-
-  public void geradorNumeroVoucher () {
-
-  }
-
-  public float calculaPreco () {
-
-  }*/
 }
