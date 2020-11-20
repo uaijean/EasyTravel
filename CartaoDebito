@@ -26,8 +26,7 @@ public class CartaoDebito extends Cartao {
     public void cadastroCartao() {
         Scanner leitura = new Scanner(System.in);
         System.out.println("Insira o número do cartão: ");
-        String numeroCartao = leitura.next();
-        super.setNumeroCartao(numeroCartao);
+        super.setNumeroCartao(leitura.next());
         System.out.println("Insira o saldo: ");
         float saldo = leitura.nextFloat();
         setSaldo(saldo);
