@@ -39,8 +39,7 @@ public class CartaoCredito extends Cartao {
     public void cadastroCartao() {
         Scanner leitura = new Scanner(System.in);
         System.out.println("Insira o número do cartão: ");
-        String numeroCartao = leitura.next();
-        setNumeroCartao(numeroCartao);
+        super.setNumeroCartao(leitura.next());
         System.out.println("Insira o limite: ");
         float limite = leitura.nextFloat();
         setLimite(limite);
@@ -51,7 +50,7 @@ public class CartaoCredito extends Cartao {
     @Override
     public void imprimeDadosCartao() {
         System.out.println("*** Dados do Cartão de Crédito ***");
-        System.out.println("Últimos 4 números: " + this.getNumeroCartao().substring(12));
+        System.out.println("Últimos 4 números: " + super.getNumeroCartao().substring(12));
         System.out.println("Limite: R$ " + this.getLimite());
     }
 
