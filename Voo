@@ -167,4 +167,18 @@ public class VooAviao{
         double horas = segundos / 3600.0;
         return horas;
     }
+    
+    //calcula preço
+    public double calculaPrecoVoo(int a){
+        if(a == 1){
+            return getTaxaAssentoPrimeiraClasse() + (calculaHorasVoo() * getPrecoHora());
+        }
+        else if(a == 2){
+            return getTaxaAssentoSegundaClasse() + (calculaHorasVoo() * getPrecoHora());
+        }
+        else{
+            System.out.println("Escolha inválida!");
+            return 0;
+        }
+    }
 }
