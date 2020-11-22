@@ -33,14 +33,12 @@ public class Menu {
                                 switch(opcao2){
                                     case 1:
                                         voo.cadastraPassagemIda();
-                                        //passagem.quantidadePessoas();
-                                        passagem.calculoValorPassagem();
+                                        passagem.quantidadePessoas();
                                     break;
                                     
                                     case 2:
                                         voo.cadastraPassagemIdaVolta();
-                                        //passagem.quantidadePessoas();
-                                        passagem.calculoValorPassagem();
+                                        passagem.quantidadePessoas();
                                     break;
 
                                     case 3:
