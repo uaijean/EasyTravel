@@ -8,18 +8,16 @@ public class Passagem{
     Scanner input = new Scanner(System.in);
     private int QtdAdultos;
     private int QtdCrianca;
-    private int QtdBebe;
     private double precoFinalVenda;
+    private LocalDate dataVenda;
+    private LocalTime horaVenda;
+    private Voo voo;
+    Passageiro passageiro = new Passageiro();
     PassageiroCrianca passageiroCrianca = new PassageiroCrianca();
-    Passageiro passageiro;
-    LocalDate dataVenda;
-    LocalTime horaVenda;
-    Voo voo;
 
-    public Passagem(int QtdAdultos, int QtdCrianca, int QtdBebe, double precoFinalVenda, int classe, Passageiro passageiro, LocalDate dataVenda, LocalTime horaVenda, PassageiroCrianca PassageiroCrianca, Voo voo) {
+    public Passagem(int QtdAdultos, int QtdCrianca, double precoFinalVenda, int classe, Passageiro passageiro, LocalDate dataVenda, LocalTime horaVenda, PassageiroCrianca PassageiroCrianca, Voo voo) {
         this.QtdAdultos = QtdAdultos;
         this.QtdCrianca = QtdCrianca;
-        this.QtdBebe = QtdBebe;
         this.precoFinalVenda = precoFinalVenda;
         this.passageiro = passageiro;
         this.dataVenda = dataVenda;
@@ -48,14 +46,6 @@ public class Passagem{
         this.QtdCrianca = QtdCrianca;
     }
 
-    public int getQtdBebe() {
-        return QtdBebe;
-    }
-
-    public void setQtdBebe(int QtdBebe) {
-        this.QtdBebe = QtdBebe;
-    }
-
     public double getPrecoFinalVenda() {
         return precoFinalVenda;
     }
@@ -63,15 +53,6 @@ public class Passagem{
     public void setPrecoFinalVenda(double precoFinalVenda) {
         this.precoFinalVenda = precoFinalVenda;
     }
-
-
-    /*public Passagem getPassagem() {
-        return passagem;
-    }
-
-    public void setPassagem(Passagem passagem) {
-        this.passagem = passagem;
-    }*/
 
     public Passageiro getPassageiro() {
         return passageiro;
@@ -112,6 +93,7 @@ public class Passagem{
     public void setVoo(Voo voo) {
         this.voo = voo;
     }
+    
 
     
     
@@ -141,36 +123,22 @@ public class Passagem{
         }
         return 0;
     }
-    //calcular a quantidade de pessoas para gerar valor total das passagens(Nao esta completo)
-    /*public void quantidadePessoas(){
+    
+    public void quantidadePessoas(){
         System.out.println("Informações sobre quantidade de pessoas");
         System.out.println("Quantos adultos: ");
         this.QtdAdultos = input.nextInt();
         System.out.println("Quantos crianças: ");
         this.QtdCrianca = input.nextInt();
-        System.out.println("Quantos de bebês: ");
-        this.QtdBebe = input.nextInt();
-        if(this.QtdAdultos > 0 || passageiro.getIdade() >12){
+        if(this.QtdAdultos > 0 ){
             passageiro.cadastroPassageiro();
         }
-        if(this.QtdCrianca > 0 || (passageiro.getIdade()<=12 || passageiro.getIdade() >2)){
+        if(this.QtdCrianca > 0 ){
             passageiroCrianca.cadastroPassageiro();
         }
-        if(this.QtdBebe > 0 || passageiro.getIdade() <= 2){
-            passageiroCrianca.cadastroPassageiro();
-        }
-    }*/
-    
-//gerador de um voucher de comprimento 10 que mistura letras maiúsculas, minúsculas e algarismos de 0 a 10
-    public String geradorNumeroVoucher(){
-        String alfabetoNumerico = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789" + "abcdefghijklmnopqrstuvxyz";
-
-        StringBuilder numeroVoucher = new StringBuilder(10);
-
-        for (int i = 0; i < 10; i++) {
-            int index = (int)(alfabetoNumerico.length() * Math.random());
-            numeroVoucher.append(alfabetoNumerico.charAt(index));
-        }
-        return numeroVoucher.toString();
     }
+    
+    public  void geradorNumeroVoucher (){}
+    
+    
 }
