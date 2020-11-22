@@ -228,7 +228,6 @@ public class Voo{
             System.out.println("1- Classe Execultiva");
             System.out.println("2- Classe Econômica");
             this.setClasse(input.nextInt());
-            //passagem.setVoo(this);
         }
         catch (ParseException e){
         }
@@ -248,7 +247,6 @@ public class Voo{
                 System.out.println("1- Classe Execultiva");
                 System.out.println("2- Classe Econômica");
                 this.setClasse(input.nextInt());
-                //passagem.setVoo(this);
                 }
             catch(ParseException e){
             }
