@@ -1,1 +1,69 @@
+package Easytravel;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+
+public class Menu {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Voo voo = new Voo();
+        Passagem passagem = new Passagem();
+        int opcao1 = 0;
+        do{
+            try{
+            System.out.println("SISTEMA DE COMPRA DE PASSAGENS: ");
+            System.out.println("Selecione uma opção: ");
+            System.out.println("1- Compra de passagens");
+            System.out.println("2- Lista de destinos");
+            System.out.println("3- Sair");
+            System.out.println("Digite a opcao: ");
+            opcao1 = input.nextInt();
+                switch(opcao1){
+                    case 1:
+                        int opcao2;
+                        do{
+                            System.out.println("PASSAGENS");
+                            System.out.println("Escolha a opção de passagem");
+                            System.out.println("1-Passagens ida e volta");
+                            System.out.println("2-Passagens somente de ida");
+                            System.out.println("3-Voltar ao menu principal");
+                            System.out.println("Digite a opcao: ");
+                            opcao2 = input.nextInt();
+                                switch(opcao2){
+                                    case 1:
+                                        voo.cadastraPassagemIda();
+                                        //passagem.quantidadePessoas();
+                                        passagem.calculoValorPassagem();
+                                    break;
+                                    
+                                    case 2:
+                                        voo.cadastraPassagemIdaVolta();
+                                        //passagem.quantidadePessoas();
+                                        passagem.calculoValorPassagem();
+                                    break;
+
+                                    case 3:
+                                        break;
+                                    
+                                    default:
+                                        System.err.println("Erro! Escolha a opcao correta");
+                            }
+                        }
+                        while(opcao2 == 3);
+                            return;
+                    case 2:
+                        break;
+
+                    case 3:
+                        System.out.println("Saindo do Sistema...");
+                        break;
+                    default:
+                        System.err.println("Erro: Escolha a opcao correta!!");
+                }
+            }catch (InputMismatchException e) {
+                System.err.println("Erro: Escolha a opcao correta!");
+            }
+        }while(opcao1 != 3);
+    }
+}
