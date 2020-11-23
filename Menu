@@ -24,7 +24,7 @@ public class Menu {
                         int opcao2;
                         do{
                             System.out.println("PASSAGENS");
-                            System.out.println("Escolha a opção de passagem");
+                            System.out.println("Escolha a opção de passagem:");
                             System.out.println("1-Passagens ida e volta");
                             System.out.println("2-Passagens somente de ida");
                             System.out.println("3-Voltar ao menu principal");
