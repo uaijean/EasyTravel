@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class CartaoDebito extends Cartao {
     private float saldo;
-
     public CartaoDebito() {
 
     }
@@ -24,9 +23,34 @@ public class CartaoDebito extends Cartao {
     @Override
     public void cadastroCartao() {
         Scanner leitura = new Scanner(System.in);
-        System.out.println("Insira o número do cartão: ");
-        super.setNumeroCartao(leitura.next());
-        System.out.println("Insira o saldo: ");
+        System.out.print("Insira o número do cartão: ");
+        String numeroCartao = leitura.next();
+        int soma = 0;
+        try {
+            for(int i = 0; i <= numeroCartao.length()-1; i++) {
+                String numString = (numeroCartao.substring(i, i+1));
+                if (i % 2 == 0) {                            
+                    if ((Integer.parseInt(numString) * 2) > 9) {
+                        soma += ((Integer.parseInt(numString) * 2) - 9);
+                    }
+                    else {
+                        soma += ((Integer.parseInt(numString) * 2));
+                    }
+                }
+                else {
+                    soma += (Integer.parseInt(numString) * 1);
+                }
+            }
+            if (soma % 10 == 0) {
+                super.setNumeroCartao(numeroCartao);
+            }
+            else {
+                throw new Exception();
+            }
+        } catch(Exception CartaoInvalido) {
+            System.out.println("Cartão Inválido!");
+        }
+        System.out.print("Insira o saldo: ");
         this.saldo = leitura.nextFloat();
         leitura.close();
     }
