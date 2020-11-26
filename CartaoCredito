@@ -63,12 +63,12 @@ public class CartaoCredito extends Cartao {
                 throw new Exception();
             }
         } catch(Exception CartaoInvalido) {
-            System.out.print("Cartão Inválido!");
+            System.out.println("Cartão Inválido!");
         }
         
 
         
-        System.out.print("Insira o limite: ");
+        System.out.println("Insira o limite: ");
         this.limite = leitura.nextFloat();
         //System.out.println("Insira o número das parcelas: ");
         leitura.close();
