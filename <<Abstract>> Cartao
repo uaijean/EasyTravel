@@ -1,16 +1,27 @@
 package com.easytravel;
 
-import java.util.Scanner;
+import com.easytravel.tratamentoexcecoes.*;
 
 public abstract class Cartao {
     private String numeroCartao;
+    private boolean validacaoCompra;
 
+    //construtores
     public Cartao(){
 
     }
 
     public Cartao(String numeroCartao) {
         this.numeroCartao = numeroCartao;
+    }
+
+    //getters e setters
+    public boolean isValidacaoCompra() {
+        return validacaoCompra;
+    }
+
+    public void setValidacaoCompra(boolean validacaoCompra) {
+        this.validacaoCompra = validacaoCompra;
     }
 
     public String getNumeroCartao() {
@@ -21,7 +32,8 @@ public abstract class Cartao {
         this.numeroCartao = numeroCartao;
     }
 
+    //métodos abstratos implementados nas classes de crédito e débito
     public abstract void cadastroCartao();
     public abstract void imprimeDadosCartao();
-    public abstract void pagamentoCartao();
+    public abstract void pagamentoCartao(float totalCarrinho);
 }
