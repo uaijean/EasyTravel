@@ -88,7 +88,7 @@ public class Main {
                 int escolhaVoo = leitura.nextInt();
 
                 //validação de escolha do número do vôo
-                if(escolhaVoo < 0 || escolhaVoo > listaVoos.size()){
+                while(escolhaVoo < 0 || escolhaVoo > listaVoos.size()){
                     System.out.print("\nOpção inválida, digite novamente: ");
                     escolhaVoo = leitura.nextInt();
                 }
@@ -110,8 +110,15 @@ public class Main {
                     int qtdeCriancas = leitura.nextInt();
 
                     //escolha de classe
-                    System.out.print("\nDigite 1 para Primeira classe ou 2 para Segunda classe: ");
-                    int escolhaClasse = leitura.nextInt();
+                    System.out.println("Escolha a classe de voo");
+                        System.out.println("1- Classe Execultiva");
+                        System.out.println("2- Classe Econômica");
+                        int escolhaClasse = leitura.nextInt();
+                        
+                        while(escolhaClasse < 1 || escolhaClasse > 2){
+                            System.out.println("Opção inválida, digite novamente: ");
+                            escolhaClasse = leitura.nextInt();
+                        }
 
                     for (int i = 0; i < qtdeAdultos; i++) {
                         Passageiro passageiro = new Passageiro();
