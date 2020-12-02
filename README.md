@@ -5,6 +5,6 @@ Desenvolvimento: de 03/11 a 08/12/2020.
 
   A Easy Travel é um sistema de passagens aéreas que oferece o serviço de compra de passagens aéreas. O cliente pode escolher vôos e se deseja assentos de primeira ou segunda classe mediante pagamento de taxa. 
   
-	O preço das passagens é definido pela soma das taxas de serviço e de assento. Crianças abaixo de 8 anos possuem direito ao desconto de 50% sob o valor final da passagem. 
-	
-	As formas de pagamento aceitas são cartões de crédito e débito. Ao realizar a compra, cada passageiro é designado um número de voucher com 10 caracteres gerados aleatoriamente, entre letras maíusculas, minúsculas e algarismos.
+  O preço das passagens é definido pela soma das taxas de serviço e de assento. Crianças abaixo de 8 anos possuem direito ao desconto de 50% sob o valor final da passagem. 
+  
+  As formas de pagamento aceitas são cartões de crédito e débito. Ao realizar a compra, cada passageiro é designado um número de voucher com 10 caracteres gerados aleatoriamente, entre letras maíusculas, minúsculas e algarismos.
