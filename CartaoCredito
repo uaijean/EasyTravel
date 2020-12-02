@@ -1,20 +1,13 @@
 package com.easytravel;
 
 import java.util.Scanner;
+import com.easytravel.tratamentoexcecoes.*;
 
-public class CartaoCredito extends Cartao {
+public class CartaoCredito extends Cartao{
     private float limite;
-    private int numeroParcelas;
 
-    //construtor
-    public CartaoCredito(){
-
-    }
-
-    public CartaoCredito(String numeroCartao, float limite, int numeroParcelas) {
-        super(numeroCartao);
-        this.limite = limite;
-        this.numeroParcelas = numeroParcelas;
+    //construtores
+    public CartaoCredito() {
     }
 
     //getters e setters
@@ -26,67 +19,33 @@ public class CartaoCredito extends Cartao {
         this.limite = limite;
     }
 
-    public int getNumeroParcelas() {
-        return numeroParcelas;
-    }
-
-    public void setNumeroParcelas(int numeroParcelas) {
-        this.numeroParcelas = numeroParcelas;
-    }
-
     //métodos
     @Override
     public void cadastroCartao() {
-        Scanner leitura = new Scanner(System.in);
-        System.out.print("Insira o número do cartão: ");
-        String numeroCartao = leitura.next();
-        int soma = 0;
-        try {
-            for(int i = 0; i <= numeroCartao.length()-1; i++) {
-                String numString = (numeroCartao.substring(i, i+1));
-                if (i % 2 == 0) {                            
-                    if ((Integer.parseInt(numString) * 2) > 9) {
-                        soma += ((Integer.parseInt(numString) * 2) - 9);
-                    }
-                    else {
-                        soma += ((Integer.parseInt(numString) * 2));
-                    }
-                }
-                else {
-                    soma += (Integer.parseInt(numString) * 1);
-                }
-            }
-            if (soma % 10 == 0) {
-                super.setNumeroCartao(numeroCartao);
-            }
-            else {
-                throw new Exception();
-            }
-        } catch(Exception CartaoInvalido) {
-            System.out.println("Cartão Inválido!");
-        }
-        
-
-        
-        System.out.println("Insira o limite: ");
-        this.limite = leitura.nextFloat();
-        //System.out.println("Insira o número das parcelas: ");
-        leitura.close();
+        Scanner leituraCartaoCredito = new Scanner(System.in);
+        System.out.print("\nInsira o número do cartão: ");
+        super.setNumeroCartao(leituraCartaoCredito.next());
+        System.out.print("Insira o limite: ");
+        setLimite(leituraCartaoCredito.nextFloat());
     }
 
     @Override
     public void imprimeDadosCartao() {
-        System.out.println("*** Dados do Cartão de Crédito ***");
-        System.out.println("Últimos 4 números: " + super.getNumeroCartao().substring(12));
-        System.out.println("Limite: R$ " + this.getLimite());
+        System.out.print("\n*** Dados do Cartão de Crédito ***" +
+                "\nÚltimos 4 números: " + super.getNumeroCartao().substring(12) +
+                "\nLimite: R$ " + this.getLimite());
     }
 
     @Override
-    public void pagamentoCartao() {
-
+    public void pagamentoCartao(float totalCarrinho) {
+        if(totalCarrinho < limite){
+            this.setLimite(getLimite() - totalCarrinho);
+            System.out.println("\n\nCompra efetuada com sucesso! O limite agora é R$ " + getLimite());
+            super.setValidacaoCompra(true);
+        }
+        else{
+            System.out.println("\n\nDesculpe, você não tem saldo o suficiente para essa compra :(");
+            super.setValidacaoCompra(false);
+        }
     }
-
-    /*public float calculaParcela(){
-        return 0;
-    }*/
 }
