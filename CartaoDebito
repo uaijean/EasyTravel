@@ -1,17 +1,16 @@
 package com.easytravel;
 
 import java.util.Scanner;
+import com.easytravel.tratamentoexcecoes.*;
 
 public class CartaoDebito extends Cartao {
     private float saldo;
+
+    //construtores
     public CartaoDebito() {
-
-    }
-    public CartaoDebito(String numeroCartao, float saldo) {
-        super(numeroCartao);
-        this.saldo = saldo;
     }
 
+    //getters e setters
     public float getSaldo() {
         return saldo;
     }
@@ -20,50 +19,33 @@ public class CartaoDebito extends Cartao {
         this.saldo = saldo;
     }
 
+    //métodos
     @Override
     public void cadastroCartao() {
-        Scanner leitura = new Scanner(System.in);
-        System.out.print("Insira o número do cartão: ");
-        String numeroCartao = leitura.next();
-        int soma = 0;
-        try {
-            for(int i = 0; i <= numeroCartao.length()-1; i++) {
-                String numString = (numeroCartao.substring(i, i+1));
-                if (i % 2 == 0) {                            
-                    if ((Integer.parseInt(numString) * 2) > 9) {
-                        soma += ((Integer.parseInt(numString) * 2) - 9);
-                    }
-                    else {
-                        soma += ((Integer.parseInt(numString) * 2));
-                    }
-                }
-                else {
-                    soma += (Integer.parseInt(numString) * 1);
-                }
-            }
-            if (soma % 10 == 0) {
-                super.setNumeroCartao(numeroCartao);
-            }
-            else {
-                throw new Exception();
-            }
-        } catch(Exception CartaoInvalido) {
-            System.out.println("Cartão Inválido!");
-        }
-        System.out.print("Insira o saldo: ");
-        this.saldo = leitura.nextFloat();
-        leitura.close();
+        Scanner leituraCartaoDebito = new Scanner(System.in);
+        System.out.print("\nInsira o número do cartão: ");
+        super.setNumeroCartao(leituraCartaoDebito.next());
+        System.out.print("Insira o limite: ");
+        setSaldo(leituraCartaoDebito.nextFloat());
     }
 
     @Override
     public void imprimeDadosCartao() {
-        System.out.println("*** Dados do Cartão de Débito ***");
-        System.out.println("Últimos 4 números: " + super.getNumeroCartao().substring(12));
-        System.out.println("Saldo: R$ " + getSaldo());
+        System.out.print("\n*** Dados do Cartão de Crédito ***" +
+                "\nÚltimos 4 números: " + super.getNumeroCartao().substring(12) +
+                "\nSaldo: R$ " + this.getSaldo());
     }
 
     @Override
-    public void pagamentoCartao() {
-
+    public void pagamentoCartao(float totalCarrinho) {
+        if(totalCarrinho < saldo){
+            this.setSaldo(getSaldo() - totalCarrinho);
+            System.out.println("\n\nCompra efetuada com sucesso! O saldo agora é R$ " + getSaldo());
+            super.setValidacaoCompra(true);
+        }
+        else{
+            System.out.println("\n\nDesculpe, você não tem saldo o suficiente para essa compra :(");
+            super.setValidacaoCompra(false);
+        }
     }
 }
