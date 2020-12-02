@@ -1,62 +1,51 @@
 package com.easytravel;
 
 import java.util.Scanner;
+import com.easytravel.tratamentoexcecoes.*;
 
-public class PassageiroCrianca extends Passageiro{
-    private String nomeMae;
-    private String nomePai;
+public class PassageiroCrianca extends Passageiro {
+    private int idade;
+    private boolean descontoIdade;
 
-    public PassageiroCrianca(String nome, String telefone, String cpf, int idade, String nomeMae, String nomePai) {
-        super(nome, telefone, cpf, idade);
-        this.nomeMae = nomeMae;
-        this.nomePai = nomePai;
-    }
-
+    //construtores
     public PassageiroCrianca() {
     }
 
-
-    public String getNomeMae() {
-        return nomeMae;
+    //getters e setters
+    public boolean isDescontoIdade() {
+        return descontoIdade;
     }
 
-    public void setNomeMae(String nomeMae) {
-        this.nomeMae = nomeMae;
+    public void setDescontoIdade(boolean descontoIdade) {
+        this.descontoIdade = descontoIdade;
     }
 
-    public String getNomePai() {
-        return nomePai;
+    public int getIdade() {
+        return idade;
     }
 
-    public void setNomePai(String nomePai) {
-        this.nomePai = nomePai;
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
 
     //métodos
     @Override
-    public void cadastroPassageiro(){
-        Scanner leitura = new Scanner(System.in);
-        System.out.println("Digite o nome da criança: ");
-        this.setNome(leitura.nextLine());
-        System.out.println("Digite o nome da mãe:");
-        this.nomeMae = leitura.nextLine();
-        System.out.println("Digite o nome do pai:");
-        this.nomePai = leitura.nextLine();
-        System.out.println("Digite a idade da criança:");
-        this.setIdade(leitura.nextInt());
-        System.out.println("Telefone do responsável: ");
-        super.setTelefone(leitura.next());
-        System.out.println("CPF:");
-        this.setCpf(leitura.next());
+    public void cadastroPassageiro() {
+        Scanner leituraPassageiroCrianca = new Scanner(System.in);
+        super.cadastroPassageiro();
+        System.out.print("Idade da criança: ");
+        setIdade(leituraPassageiroCrianca.nextInt());
+        if(this.getIdade() < 8){
+            this.setDescontoIdade(true);
+        }
+        else{
+            this.setDescontoIdade(false);
+        }
     }
 
     @Override
-    public void imprimeDadosPassageiro(){
-        System.out.println ("Nome:" + this.getNome());
-        System.out.println ("Nome da mãe:" + this.getNomeMae());
-        System.out.println ("Nome do pai:" + this.getNomePai());
-        System.out.println ("Idade:" + this.getIdade());
-        System.out.println ("Telefone do responsável:" + this.getTelefone());
-        System.out.println ("CPF:" + this.getCpf());
+    public void imprimePassageiro() {
+        super.imprimePassageiro();
+        System.out.print("\nIdade: " + getIdade());
     }
 }
