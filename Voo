@@ -1,254 +1,103 @@
 package com.easytravel;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.format.DateTimeFormatter;
+import java.time.*;
 import java.util.ArrayList;
-import static java.util.Calendar.*;
-import java.util.Scanner;
+import com.easytravel.tratamentoexcecoes.*;
 
-public class Voo{
-    private String codigoIdentificacao;
+public class Voo {
     private String localOrigem;
     private String localChegada;
-    private Calendar dataPartida = getInstance();
-    private Calendar dataChegada = getInstance();
-    private ArrayList<Integer> assentosPrimeiraClasse = new ArrayList<>(30);
-    private ArrayList<Integer> assentosSegundaClasse = new ArrayList<>(70);
-    private ArrayList<Passageiro> listaPassageiro = new ArrayList<>(100);
-    private float precoHora;
-    private float taxaAssentoPrimeiraClasse;
-    private float taxaAssentoSegundaClasse;
-    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-    Scanner input = new Scanner(System.in);
-    Calendar calendario = Calendar.getInstance();
-    String data;
-    private Passagem passagem;
-    private int classe;
+    private int qtdeAssentosPrimeiraClasse;
+    private int qtdeAssentosSegundaClasse;
+    private int qtdeAssentosTotal;
+    private float taxaServico;
+    private float taxaPrimeiraClasse;
+    private float taxaSegundaClasse;
+    private LocalDateTime dataPartida;
+    private LocalDateTime dataChegada;
+    private ArrayList<Passagem>listaPassageiros = new ArrayList<>();
 
     //construtor
-    public Voo(String codigoIdentificacao, String localOrigem, String localChegada, float precoHora, float taxaAssentoPrimeiraClasse, float taxaAssentoSegundaClasse, String data, Passagem passagem, int classe) {
-        this.codigoIdentificacao = codigoIdentificacao;
+    public Voo(String localOrigem, String localChegada, int qtdeAssentosPrimeiraClasse, int qtdeQtdeAssentosSegundaClasse, int qtdeAssentosTotal, float taxaServico, float taxaPrimeiraClasse, float taxaSegundaClasse) {
         this.localOrigem = localOrigem;
         this.localChegada = localChegada;
-        this.precoHora = precoHora;
-        this.taxaAssentoPrimeiraClasse = taxaAssentoPrimeiraClasse;
-        this.taxaAssentoSegundaClasse = taxaAssentoSegundaClasse;
-        this.data = data;
-        this.passagem = passagem;
-        this.classe = classe;
+        this.qtdeAssentosPrimeiraClasse = qtdeAssentosPrimeiraClasse;
+        this.qtdeAssentosSegundaClasse = qtdeQtdeAssentosSegundaClasse;
+        this.qtdeAssentosTotal = qtdeAssentosTotal;
+        this.taxaServico = taxaServico;
+        this.taxaPrimeiraClasse = taxaPrimeiraClasse;
+        this.taxaSegundaClasse = taxaSegundaClasse;
+        this.listaPassageiros = listaPassageiros;
     }
 
-    public Voo() {
+    //getters e setters
+    public ArrayList<Passagem> getListaPassageiros() {
+        return listaPassageiros;
     }
 
-    public String getCodigoIdentificacao() {
-        return codigoIdentificacao;
-    }
-
-    public void setCodigoIdentificacao(String codigoIdentificacao) {
-        this.codigoIdentificacao = codigoIdentificacao;
+    public void setListaPassageiros(ArrayList<Passagem> listaPassageiros) {
+        this.listaPassageiros = listaPassageiros;
     }
 
     public String getLocalOrigem() {
         return localOrigem;
     }
 
-    public void setLocalOrigem(String localOrigem) {
-        this.localOrigem = localOrigem;
-    }
-
     public String getLocalChegada() {
         return localChegada;
     }
 
-    public void setLocalChegada(String localChegada) {
-        this.localChegada = localChegada;
+    public int getQtdeAssentosPrimeiraClasse() {
+        return qtdeAssentosPrimeiraClasse;
     }
 
-    public Calendar getDataPartida() {
-        return dataPartida;
+    public int getQtdeAssentosSegundaClasse() {
+        return qtdeAssentosSegundaClasse;
     }
 
-    public void setDataPartida(Calendar dataPartida) {
+    public int getQtdeAssentosTotal() {
+        return qtdeAssentosTotal;
+    }
+
+    public float getTaxaServico() {
+        return taxaServico;
+    }
+
+    public float getTaxaPrimeiraClasse() {
+        return taxaPrimeiraClasse;
+    }
+
+    public float getTaxaSegundaClasse() {
+        return taxaSegundaClasse;
+    }
+
+    public String getDataPartida() {
+        return dataPartida.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+    }
+
+    public void setDataPartida(LocalDateTime dataPartida) {
         this.dataPartida = dataPartida;
     }
 
-    public Calendar getDataChegada() {
-        return dataChegada;
+    public String getDataChegada() {
+        return dataChegada.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
     }
 
-    public void setDataChegada(Calendar dataChegada) {
+    public void setDataChegada(LocalDateTime dataChegada) {
         this.dataChegada = dataChegada;
     }
 
-    public float getPrecoHora() {
-        return precoHora;
+    public void setQtdeAssentosPrimeiraClasse(int qtdeAssentosPrimeiraClasse) {
+        this.qtdeAssentosPrimeiraClasse = qtdeAssentosPrimeiraClasse;
     }
 
-    public void setPrecoHora(float precoHora) {
-        this.precoHora = precoHora;
-    }
-    
-    public ArrayList<Integer> getAssentosPrimeiraClasse() {
-        return assentosPrimeiraClasse;
-    }
-
-    public ArrayList<Integer> getAssentosSegundaClasse() {
-        return assentosSegundaClasse;
-    }
-
-    public ArrayList<Passageiro> getListaPassageiro(){
-        return listaPassageiro;
-    }
-
-    public void setTaxaAssentoPrimeiraClasse(float taxaAssentoPrimeiraClasse){
-        this.taxaAssentoPrimeiraClasse = taxaAssentoPrimeiraClasse;
-    }
-
-    public void setTaxaAssentoSegundaClasse(float taxaAssentoSegundaClasse){
-        this.taxaAssentoSegundaClasse = taxaAssentoSegundaClasse;
-    }
-    public float getTaxaAssentoPrimeiraClasse() {
-        return taxaAssentoPrimeiraClasse;
-    }
-
-    public float getTaxaAssentoSegundaClasse() {
-        return taxaAssentoSegundaClasse;
-    }
-
-    public Passagem getPassagem() {
-        return passagem;
-    }
-
-    public void setPassagem(Passagem passagem) {
-        this.passagem = passagem;
-    }
-
-    public int getClasse() {
-        return classe;
-    }
-
-    public void setClasse(int classe) {
-        if(classe < 1 || classe >2){
-             System.err.println("Erro: Escolha a opcao correta!!");
-        }
-        else{
-            this.classe = classe;
-        }
-    }
-    
-
-    //passa os dados para o calendário dataPartida, já que os objetos calendar são criados com o horário do computador
-    //note que os meses de calendar vão de 0 a 11 e não de 1 a 12
-    public void setDataPartida(int anoPartida, int mesPartida, int diaPartida, int horaPartida, int minutoPartida){
-        dataPartida.set(Calendar.YEAR, anoPartida);
-        dataPartida.set(Calendar.MONTH, mesPartida - 1);
-        dataPartida.set(Calendar.DAY_OF_MONTH, diaPartida);
-        dataPartida.set(Calendar.HOUR_OF_DAY, horaPartida);
-        dataPartida.set(Calendar.MINUTE, minutoPartida);
-    }
-
-    //passa os dados para o calendário dataChegada
-    public void setDataChegada(int anoChegada, int mesChegada, int diaChegada, int horaChegada, int minutoChegada){
-        dataChegada.set(Calendar.YEAR, anoChegada);
-        dataChegada.set(Calendar.MONTH, mesChegada - 1);
-        dataChegada.set(Calendar.DAY_OF_MONTH, diaChegada);
-        dataChegada.set(Calendar.HOUR_OF_DAY, horaChegada);
-        dataChegada.set(Calendar.MINUTE, minutoChegada);
-    }
-
-    public void setAssentosPrimeiraClasse(ArrayList<Integer> assentosPrimeiraClasse) {
-        this.assentosPrimeiraClasse = assentosPrimeiraClasse;
-    }
-
-    public void setAssentosSegundaClasse(ArrayList<Integer> assentosSegundaClasse) {
-        this.assentosSegundaClasse = assentosSegundaClasse;
-    }
-
-    public void setListaPassageiro(ArrayList<Passageiro> listaPassageiro){
-        this.listaPassageiro = listaPassageiro;
+    public void setQtdeAssentosSegundaClasse(int qtdeAssentosSegundaClasse) {
+        this.qtdeAssentosSegundaClasse = qtdeAssentosSegundaClasse;
     }
 
     //métodos
-    //imprime as informações do vôo cadastrado
-    public void imprimeDadosVoo(){
-        System.out.println("Código de identificação: " + this.getCodigoIdentificacao());
-        System.out.println("Origem: " + this.getLocalOrigem());
-        System.out.println("Chegada: " + this.getLocalChegada());
-        System.out.println("Preço da hora: " + this.getPrecoHora());
-        System.out.println("Quantidade de assentos da primeira classe: " + this.getAssentosPrimeiraClasse().size());
-        System.out.println("Quantidade de assentos da segunda classe: " + this.getAssentosSegundaClasse().size());
-        System.out.println("Total de assentos: " + this.getQuantidadeAssentosTotal());
-        System.out.println("Taxa de assento da primeira classe: " + this.getTaxaAssentoPrimeiraClasse());
-        System.out.println("Taxa de assento da segunda classe: " + this.getTaxaAssentoSegundaClasse());
-        System.out.println("Data de partida: ");
-        this.getDataPartida();
-        System.out.println("Data de chegada: ");
-        this.getDataChegada();
+    public int qtdeAssentosDisponíveis(){
+        return getQtdeAssentosPrimeiraClasse() + getQtdeAssentosSegundaClasse();
     }
-
-    //retorna a quantidade de assentos ocupados das duas classes
-    public int getQuantidadeAssentosTotal(){
-        int i = this.getAssentosPrimeiraClasse().size() + this.getAssentosSegundaClasse().size();
-        return i;
-    }
-
-    //laço for que imprime os dados de todos os passageiros independente de ser primeira ou segunda classe
-    public void imprimeListaPassageiros(){
-        System.out.println(("*** Lista de Passageiros do Vôo " + this.getCodigoIdentificacao() + " ***"));
-        for (int i = 0; i < listaPassageiro.size(); i++) {
-            System.out.println("Dados do passageiro " + (i + 1));
-            listaPassageiro.get(i).imprimeDadosPassageiro();
-        }
-    }
-    
-    //subtração de calendários
-    public double calculaHorasVoo(){
-        long segundos = (dataChegada.getTimeInMillis() - dataPartida.getTimeInMillis()) / 1000;
-        double horas = segundos / 3600.0;
-        return horas;
-    }
-    
-    public void cadastraPassagemIda(){
-        try {
-            System.out.println("Informe local de origem: ");
-            this.setLocalOrigem(input.nextLine());
-            System.out.println("Informe destino: ");
-            this.setLocalChegada(input.nextLine());
-            System.out.println("Informe a data de partida: ");
-            data = input.nextLine();
-            calendario.setTime(formato.parse(data));
-            this.setDataPartida(calendario);
-            System.out.println("Informe a data de volta: ");
-            data = input.nextLine();
-            calendario.setTime(formato.parse(data));
-            this.setDataChegada(calendario);
-            System.out.println("Escolha a classe de voo");
-            System.out.println("1- Classe Execultiva");
-            System.out.println("2- Classe Econômica");
-            this.setClasse(input.nextInt());
-        }
-        catch (ParseException e){
-        }
-    }
-        
-        public void cadastraPassagemIdaVolta(){
-            try {
-                System.out.println("Informe local de origem: ");
-                this.setLocalOrigem(input.nextLine());
-                System.out.println("Informe destino: ");
-                this.setLocalChegada(input.nextLine());
-                System.out.println("Informe a data de partida: ");
-                data = input.nextLine();
-                calendario.setTime(formato.parse(data));
-                this.setDataPartida(calendario);
-                System.out.println("Escolha a classe de voo");
-                System.out.println("1- Classe Execultiva");
-                System.out.println("2- Classe Econômica");
-                this.setClasse(input.nextInt());
-                }
-            catch(ParseException e){
-            }
-        }
-    }
+}
