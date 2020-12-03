@@ -1,7 +1,5 @@
 package com.easytravel;
 
-import com.easytravel.tratamentoexcecoes.*;
-
 public class Passagem{
     private Passageiro passageiro;
     private String voucher;
@@ -11,10 +9,6 @@ public class Passagem{
     }
 
     //getters e setters
-    public Passageiro getPassageiro() {
-        return passageiro;
-    }
-
     public void setPassageiro(Passageiro passageiro) {
         this.passageiro = passageiro;
     }
@@ -35,10 +29,8 @@ public class Passagem{
     }
 
     public void imprimePassagem(){
-        System.out.print("\n******************************");
         passageiro.imprimePassageiro();
         setVoucher();
         System.out.print("\nVoucher: " + getVoucher());
-        System.out.print("\n******************************");
     }
 }
