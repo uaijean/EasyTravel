@@ -30,7 +30,7 @@ public class PassageiroCrianca extends Passageiro {
 
     //métodos
     @Override
-    public void cadastroPassageiro() throws CPFInvalido {
+    public void cadastroPassageiro() throws CPFInvalido, DadoNaoPreenchido {
         Scanner leituraPassageiroCrianca = new Scanner(System.in);
         super.cadastroPassageiro();
         System.out.print("Idade da criança: ");
@@ -40,6 +40,7 @@ public class PassageiroCrianca extends Passageiro {
         }
         else{
             this.setDescontoIdade(false);
+            throw new CPFInvalido("Erro: apenas crianças menores de 8 anos têm direito a desconto de 50% na passagem.");
         }
     }
 
