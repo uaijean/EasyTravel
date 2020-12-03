@@ -34,7 +34,7 @@ public abstract class Cartao {
     }
 
     //métodos abstratos implementados nas classes de crédito e débito
-    public abstract void cadastroCartao() throws CartaoNumeroInvalido;
+    public abstract void cadastroCartao() throws CartaoNumeroInvalido, DadoNaoPreenchido;
     public abstract void imprimeDadosCartao();
     public abstract void pagamentoCartao(float totalCarrinho) throws CartaoRecusado;
 
