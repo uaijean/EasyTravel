@@ -100,4 +100,11 @@ public class Voo {
     public int qtdeAssentosDisponíveis(){
         return getQtdeAssentosPrimeiraClasse() + getQtdeAssentosSegundaClasse();
     }
+
+    public String imprimeDadosVoo(){
+        return "\nSaída: " + getLocalOrigem() +
+                "\nChegada: " + getLocalChegada() +
+                "\nHorário Partida: " + getDataPartida() +
+                "\nHorário Chegada: " + getDataChegada();
+    }
 }
