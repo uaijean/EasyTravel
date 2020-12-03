@@ -197,7 +197,10 @@ public class Main {
                         //se pagamento for aprovado
                         if(cartaoCredito.isValidacaoCompra()){
                             for(int i = listaVoos.get(escolhaVoo).getListaPassageiros().size() - (qtdeAdultos + qtdeCriancas); i < qtdeAdultos + qtdeCriancas; i++){
+                                System.out.print("\n******************************");
                                 listaVoos.get(escolhaVoo).getListaPassageiros().get(i).imprimePassagem();
+                                System.out.print(listaVoos.get(escolhaVoo).imprimeDadosVoo() +
+                                        "\n******************************");
                             }
                         }
 
@@ -231,7 +234,8 @@ public class Main {
                                 System.out.print("\n******************************");
                                 listaVoos.get(escolhaVoo).getListaPassageiros().get(i).imprimePassagem();
                                 listaVoos.get(escolhaVoo).imprimeDadosVoo();
-                                System.out.print("\n******************************");
+                                System.out.print(listaVoos.get(escolhaVoo).imprimeDadosVoo() +
+                                        "\n******************************");
                             }
                         }
 
