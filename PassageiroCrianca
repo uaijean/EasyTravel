@@ -30,7 +30,7 @@ public class PassageiroCrianca extends Passageiro {
 
     //métodos
     @Override
-    public void cadastroPassageiro() {
+    public void cadastroPassageiro() throws CPFInvalido {
         Scanner leituraPassageiroCrianca = new Scanner(System.in);
         super.cadastroPassageiro();
         System.out.print("Idade da criança: ");
