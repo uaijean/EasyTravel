@@ -21,11 +21,16 @@ public class CartaoDebito extends Cartao {
 
     //métodos
     @Override
-    public void cadastroCartao() throws CartaoNumeroInvalido{
+    public void cadastroCartao() throws CartaoNumeroInvalido, DadoNaoPreenchido {
         Scanner leituraCartaoDebito = new Scanner(System.in);
         System.out.print("\nInsira o número do cartão: ");
-        String numeroCartao = leituraCartaoDebito.next();
-        if(super.validacaoNumeroLuhn(numeroCartao)){
+        String numeroCartao = leituraCartaoDebito.nextLine();
+
+        //validações do número de cartão
+        if(numeroCartao.isEmpty()){
+            throw new DadoNaoPreenchido("Erro! Dado não preenchido.");
+        }
+        else if(super.validacaoNumeroLuhn(numeroCartao)){
             super.setNumeroCartao(numeroCartao);
         }
         else{
@@ -42,6 +47,7 @@ public class CartaoDebito extends Cartao {
                 "\nSaldo: R$ " + this.getSaldo());
     }
 
+    //validação do pagamento
     @Override
     public void pagamentoCartao(float totalCarrinho) throws CartaoRecusado {
         if(totalCarrinho < saldo){
