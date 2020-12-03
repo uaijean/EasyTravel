@@ -30,12 +30,18 @@ public class Passageiro {
     }
 
     //métodos
-    public void cadastroPassageiro() throws CPFInvalido {
+    public void cadastroPassageiro() throws CPFInvalido, DadoNaoPreenchido {
         Scanner leituraPassageiro = new Scanner(System.in);
         System.out.print("\nNome: ");
-        setNome(leituraPassageiro.next());
+        String nome = leituraPassageiro.nextLine();
+        setNome(nome);
         System.out.print("CPF: ");
-        String cpf = leituraPassageiro.next();
+        String cpf = leituraPassageiro.nextLine();
+
+        //validação de preenchimento de dados
+        if(nome.isEmpty() || cpf.isEmpty()){
+            throw new DadoNaoPreenchido("Erro! Dado não preenchido.");
+        }
         if(validacaoCPF(cpf)){
             setCpf(cpf);
         }
