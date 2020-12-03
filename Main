@@ -6,7 +6,7 @@ import com.easytravel.tratamentoexcecoes.*;
 
 public class Main {
 
-    public static void main(String[] args) throws QuantidadePassageirosInvalida{
+    public static void main(String[] args) throws QuantidadePassageirosInvalida, CartaoNumeroInvalido, CartaoRecusado, CPFInvalido, DadoNaoPreenchido {
 	    //inicialização dos vôos
         //vôo 1
         ArrayList<Voo> listaVoos = new ArrayList<>();
@@ -45,31 +45,43 @@ public class Main {
         int escolha = leitura.nextInt();
 
         //validação de escolha do menu inicial
-        while(escolha < 1 || escolha > 3){ //ERRO
+        while(escolha < 1 || escolha > 3){
             System.out.print("Opção inválida, digite novamente: ");
             escolha = leitura.nextInt();
         }
-        switch (escolha){
 
-            //busca de vôos //arrumar laço para imprimir msg só uma vez
+        switch (escolha){
+            //busca de vôos
             case 1:
-                System.out.print("\n*** Busca ***" +
-                        "\nInsira o destino desejado: ");
-                String buscaDestino = leitura.next();
+                System.out.print("\n*** Busca ***\n" +
+                    "Insira o destino desejado: ");
+                leitura.nextLine();
+                String buscaDestino = leitura.nextLine();
+
+                System.out.print("Insira a origem: ");
+                String buscaPartida = leitura.nextLine();
+
+                int resultadoPesquisa = 0;
+
+                //validação de preenchimento de busca
+                if(buscaDestino.isEmpty() || buscaPartida.isEmpty()){
+                    throw new DadoNaoPreenchido("Erro! Dado não preenchido.");
+                }
+
                 for(int i = 0; i < listaVoos.size(); i++){
-                    if(listaVoos.get(i).getLocalChegada().contains(buscaDestino)){
+                    if(listaVoos.get(i).getLocalChegada().equalsIgnoreCase(buscaDestino) && listaVoos.get(i).getLocalOrigem().equalsIgnoreCase(buscaPartida)){
                         System.out.print("\n*** Dados do Vôo " +
                                 i + " ***" +
-                                "\nSaída: " + listaVoos.get(i).getLocalOrigem() +
-                                "\nChegada: " + listaVoos.get(i).getLocalChegada() +
-                                "\nHorário Partida: " + listaVoos.get(i).getDataPartida() +
-                                "\nHorário Chegada: " + listaVoos.get(i).getDataChegada() +
+                                listaVoos.get(i).imprimeDadosVoo() +
                                 "\nPreços a partir de R$ " + listaVoos.get(i).getTaxaServico());
-                    }
-                    else{
-                        System.out.println("Desculpe, não encontramos vôos com os parâmetros desejados!");
+                        resultadoPesquisa++;
                     }
                 }
+
+                if(resultadoPesquisa == 0){
+                    System.out.println("\nDesculpe, não encontramos vôos com os parâmetros desejados!");
+                }
+
                 break;
 
             //lista de destinos
@@ -77,10 +89,8 @@ public class Main {
                 System.out.print("\n*** Lista de Destinos ***\n");
                 for(int i = 0; i < listaVoos.size(); i++){
                     System.out.print("\n******************************" +
-                            "\nVôo " + i + ": " + listaVoos.get(i).getLocalChegada()+
-                            "\nSaída: " + listaVoos.get(i).getLocalOrigem() +
-                            "\nHorário Partida: " + listaVoos.get(i).getDataPartida() +
-                            "\nHorário Chegada: " + listaVoos.get(i).getDataChegada() +
+                            "\nVôo " + i + ": " +
+                            listaVoos.get(i).imprimeDadosVoo() +
                             "\nPreços a partir de R$ " + listaVoos.get(i).getTaxaServico() +
                             "\n******************************");
                 }
@@ -88,7 +98,7 @@ public class Main {
                 int escolhaVoo = leitura.nextInt();
 
                 //validação de escolha do número do vôo
-                while(escolhaVoo < 0 || escolhaVoo > listaVoos.size()){
+                if(escolhaVoo < 0 || escolhaVoo > listaVoos.size()){
                     System.out.print("\nOpção inválida, digite novamente: ");
                     escolhaVoo = leitura.nextInt();
                 }
@@ -102,6 +112,7 @@ public class Main {
                     System.out.print("\n\nInsira o número de passageiros adultos: "); //ERRO
                     int qtdeAdultos = leitura.nextInt();
 
+                    //validação de quantidade de adultos; crianças não podem viajar desacompanhadas
                     if(qtdeAdultos == 0){
                         throw new QuantidadePassageirosInvalida("Erro: por favor insira um número mínimo de adultos.");
                     }
@@ -110,15 +121,8 @@ public class Main {
                     int qtdeCriancas = leitura.nextInt();
 
                     //escolha de classe
-                    System.out.println("Escolha a classe de voo");
-                        System.out.println("1- Classe Execultiva");
-                        System.out.println("2- Classe Econômica");
-                        int escolhaClasse = leitura.nextInt();
-                        
-                        while(escolhaClasse < 1 || escolhaClasse > 2){
-                            System.out.println("Opção inválida, digite novamente: ");
-                            escolhaClasse = leitura.nextInt();
-                        }
+                    System.out.print("\nDigite 1 para Primeira classe ou 2 para Segunda classe: ");
+                    int escolhaClasse = leitura.nextInt();
 
                     for (int i = 0; i < qtdeAdultos; i++) {
                         Passageiro passageiro = new Passageiro();
@@ -224,7 +228,10 @@ public class Main {
                         //se pagamento for aprovado
                         if(cartaoDebito.isValidacaoCompra()){
                             for(int i = listaVoos.get(escolhaVoo).getListaPassageiros().size() - (qtdeAdultos + qtdeCriancas); i < qtdeAdultos + qtdeCriancas; i++){
+                                System.out.print("\n******************************");
                                 listaVoos.get(escolhaVoo).getListaPassageiros().get(i).imprimePassagem();
+                                listaVoos.get(escolhaVoo).imprimeDadosVoo();
+                                System.out.print("\n******************************");
                             }
                         }
 
