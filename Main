@@ -178,8 +178,7 @@ public class Main {
                     }
 
                     //menu de pagamento
-                    System.out.print("\nHá " + listaVoos.get(escolhaVoo).qtdeAssentosDisponíveis() + " assentos disponíveis para compra." + //EXCLUIR DEPOIS
-                            "\n\nO total da compra é R$ " + totalCarrinho +
+                    System.out.print("\nO total da compra é R$ " + totalCarrinho +
                             "\nDigite 1 para Cartão de Crédito ou 2 para Cartão de Débito: ");
                     int escolhaPagamento = leitura.nextInt();
                     while(escolhaPagamento < 1 || escolhaPagamento > 2){ //ERRO
@@ -216,7 +215,6 @@ public class Main {
                                         listaVoos.get(escolhaVoo).setQtdeAssentosSegundaClasse(listaVoos.get(escolhaVoo).getQtdeAssentosSegundaClasse() + (qtdeAdultos + qtdeCriancas));
                                         break;
                                 }
-                                System.out.print("\nHá " + listaVoos.get(escolhaVoo).qtdeAssentosDisponíveis() + " assentos disponíveis para compra." ); //EXCLUIR DEPOIS
                             }
                         }
                     }
@@ -251,7 +249,6 @@ public class Main {
                                         listaVoos.get(escolhaVoo).setQtdeAssentosSegundaClasse(listaVoos.get(escolhaVoo).getQtdeAssentosSegundaClasse() + (qtdeAdultos + qtdeCriancas));
                                         break;
                                 }
-                                System.out.print("\nHá " + listaVoos.get(escolhaVoo).qtdeAssentosDisponíveis() + " assentos disponíveis para compra." ); //EXCLUIR DEPOIS
                             }
                         }
                     }
